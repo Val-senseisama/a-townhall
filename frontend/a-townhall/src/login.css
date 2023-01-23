@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
+
+/* body{
+    margin: 0;
+    padding: 0;
+    font-family:  Helvetica, sans-serif;
+    background: url("./images/13182208_5166950.jpg");
+    margin: 0;
+    padding: 0;
+} */
+
+.messages{
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    -ms-overflow-style: none;  
+    scrollbar-width: none;
+}
+
+.messages::-webkit-scrollbar {
+    display: none;
+  }
+
+.val-form{
+    font-family: Helvetica, sans-serif, "poppins", sans-serif;
+    background: url("../src/images/13182208_5166950.jpg");
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    top: 0;
+}
+
+.container{
+    width: 80%;
+    padding-top: 3.5rem;
+}
+
+.login{
+    position: absolute;
+    height: 500px;
+    width: 50%;
+    justify-content: center;
+    display: flex;
+    padding: 10px 0;
+    top: 0;
+}
+
+form{
+    margin-top: 4.5em;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 30px;
+    height: 75vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+form p{
+    color: white;
+}
+
+.md-form input{
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+
+.text-center{
+    color: white;
+    font-size: 2em;
+}
+.carousel-item img{
+    height: 80vh;
+    width: 90vw;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: rgba(136, 136, 136, 0.281);
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+  @media screen and (max-width: 550px) {
+    .login{
+        width: 90%;
+    }
+  }
