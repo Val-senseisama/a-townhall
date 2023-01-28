@@ -268,7 +268,8 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
           </Box>
         )}
       </>
-    );
-  };
 
+    );
+    
+  };
   export default SingleChat;
