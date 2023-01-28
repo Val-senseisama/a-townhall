@@ -1,5 +1,5 @@
 import { ArrowBackIcon } from "@chakra-ui/icons";
-import { Box, FormControl, IconButton, Input, Spinner, Text, useToast } from "@chakra-ui/react";
+import { Box, FormControl, IconButton, Input, InputRightElement, Spinner, Text, useToast, Icon } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { getSender, getSenderFull } from "../config/ChatLogics";
@@ -10,6 +10,7 @@ import ScrollableChat from "./ScrollableChat";
 import io from "socket.io-client";
 import animationData from "../Animations/typing.json";
 import Lottie from "lottie-react";
+import { HiOutlinePaperAirplane } from "react-icons/HiOutlinePaperAirplane";
 
 const ENDPOINT = "https://a-townhall.herokuapp.com/";
 
@@ -246,6 +247,15 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                   placeholder="Enter a message.."
                   value={newMessage}
                 onChange={typingHandler}
+                />
+                <InputRightElement 
+                  pointerEvents="all"
+                  children={<IconButton 
+                    colorScheme="blue.800"
+                    aria-label='Call Segun'
+                    size='lg'
+                    icon={<Icon as={<HiOutlinePaperAirplane />} />}
+                  />}
                 />
               </FormControl>
             </Box>
