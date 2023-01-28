@@ -67,4 +67,9 @@ const allUsers = asyncHandler(async(req, res) =>{
   res.send(users);
 });
 
-module.exports={ registerUser, authUser, allUsers };
+const updateBg = asyncHandler(async(req, res) => {
+    let {userId, bg} = req.body
+   await User.updateOne( {_id:userId}, {chatBg: bg}, { new: true })
+});
+
+module.exports={ registerUser, authUser, allUsers, updateBg };

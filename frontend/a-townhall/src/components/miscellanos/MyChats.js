@@ -4,8 +4,9 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { ChatState } from "../../context/chatProvider";
 import ChatLoading from "../ChatLoading";
-import { getSender } from "../../config/ChatLogics";
+import { getSender, getSenderPic } from "../../config/ChatLogics";
 import GroupChatModal from "./GroupChatModal";
+import { Avatar } from '@chakra-ui/react';
 
 const MyChats = ({ fetchAgain }) => {
     const [loggedUser, setLoggedUser] = useState();
@@ -49,7 +50,6 @@ const MyChats = ({ fetchAgain }) => {
           flexDir="column"
           alignItems="center"
           p={3}
-          bg="white"
           width={{ base: "100%", md: "31%" }}
           borderRadius="lg"
           borderWidth="1px"
@@ -79,7 +79,6 @@ const MyChats = ({ fetchAgain }) => {
             display="flex"
             flexDir="column"
             p={3}
-            bg="#F8F8F8"
             width="100%"
             h="100%"
             borderRadius="lg"
@@ -93,19 +92,29 @@ const MyChats = ({ fetchAgain }) => {
                   <Box
                     onClick={() => setSelectedChat(chat)}
                     cursor="pointer"
-                    bg={selectedChat === chat ? "#38B2AC" : "#E8E8E8"}
+                    bg={selectedChat === chat ? "#38B2AC" : "#e8e8e8"}
                     color={selectedChat === chat ? "white" : "black"}
                     px={3}
                     py={2}
                     borderRadius="lg"
                     key={chat._id}
+                    display="flex"
+                    flexDir="row"
+                    alignItems="center"
                   >
-                    <Text>
+                  <Avatar 
+                    mr={2}
+                    cursor="pointer"
+                    name={getSender(loggedUser, chat.users)}
+                    src={!chat.isGroupChat
+                        ? getSenderPic(loggedUser, chat.users) : "https://www.shutterstock.com/image-vector/town-hall-vector-icon-on-260nw-2140190045.jpg"}
+                    size="md" />
+                    <Text
+                    px={3}>
                       {!chat.isGroupChat
                         ? getSender(loggedUser, chat.users)
                         : chat.chatName}
                     </Text>
-                  
                         </Box>
                     ))}
                 </Stack>

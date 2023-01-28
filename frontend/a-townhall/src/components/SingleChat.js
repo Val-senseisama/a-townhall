@@ -8,8 +8,8 @@ import ProfileModal from "./miscellanos/profileModal";
 import UpdateGroupChatModal from "./miscellanos/UpdateGroupChatModal";
 import ScrollableChat from "./ScrollableChat";
 import io from "socket.io-client";
-import Lottie from "react-lottie";
-import animationData from "../Animations/typing.json"
+import animationData from "../Animations/typing.json";
+import Lottie from "lottie-react";
 
 const ENDPOINT = "https://a-townhall.herokuapp.com/";
 
@@ -22,6 +22,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     const [socketConnected, setSocketConnected] = useState(false);
     const [typing, setTyping] = useState(false);
     const [istyping, setIsTyping] = useState(false);
+    const [background, setBackground] = useState("https://i.pinimg.com/736x/8c/98/99/8c98994518b575bfd8c949e91d20548b.jpg");
     const toast = useToast();
   
     const defaultOptions = {
@@ -106,7 +107,6 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
       socket.on("connected", () => setSocketConnected(true));
       socket.on("typing", () => setIsTyping(true));
       socket.on("stop typing", () => setIsTyping(false));
-  
       // eslint-disable-next-line
     }, []);
   
@@ -197,12 +197,17 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
               flexDir="column"
               justifyContent="flex-end"
               p={3}
-              bg="#E8E8E8"
+              bg={`url(${background})`}
+              bgPosition="center"
+              bgRepeat="no-repeat"
+              bgSize="cover"
               width="100%"
               h="100%"
               borderRadius="lg"
               overflowY="hidden"
             >
+            
+
               {loading ? (
                 <Spinner
                   size="xl"

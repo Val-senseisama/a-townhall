@@ -96,13 +96,15 @@ const SideDrawer = ()=> {
             });
         }
     }
+
  return(
     <>
     <Box
         display="flex"
         justifyContent="space-between"
         alignItems="center"
-        bg="white"
+        bg="blue.800"
+        color="white"
         width="100%"
         p="5px 10px 5px 10px"
         borderWidth="5px"
@@ -146,7 +148,7 @@ const SideDrawer = ()=> {
             </MenuList>
           </Menu>
           <Menu>
-            <MenuButton as={Button} bg="white" rightIcon={<ChevronDownIcon />}>
+            <MenuButton as={Button} bg="blue.800" rightIcon={<ChevronDownIcon />}>
               <Avatar
                 size="sm"
                 cursor="pointer"
@@ -156,21 +158,24 @@ const SideDrawer = ()=> {
             </MenuButton>
             <MenuList>
               <ProfileModal user={user}>
-                <MenuItem>My Profile</MenuItem>{" "}
+                <MenuItem color="#000">My Profile</MenuItem>{" "}
               </ProfileModal>
               <MenuDivider />
-              <MenuItem onClick={logOutHandler} >Logout</MenuItem>
+              <MenuItem onClick={logOutHandler} color="#000">Logout</MenuItem>
             </MenuList>
           </Menu>
         </div>
       </Box>
 
       <Drawer
+       bg="blue.800"
+        color="white"
       placement="left"
       onClose={onClose}
       isOpen={isOpen}>
         <DrawerOverlay />
-            <DrawerContent>
+            <DrawerContent  bg="blue.800"
+        color="white">
                 <DrawerHeader borderBottomWidth="1px">Search Users</DrawerHeader>
 
                 <DrawerBody>
@@ -204,6 +209,7 @@ const SideDrawer = ()=> {
       </Drawer>
     </>
  )
+
 }
 
 export default SideDrawer;
