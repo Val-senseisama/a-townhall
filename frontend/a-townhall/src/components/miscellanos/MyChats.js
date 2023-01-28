@@ -7,6 +7,8 @@ import ChatLoading from "../ChatLoading";
 import { getSender, getSenderPic } from "../../config/ChatLogics";
 import GroupChatModal from "./GroupChatModal";
 import { Avatar } from '@chakra-ui/react';
+import { Icon } from "@chakra-ui/react";
+import { MdOutlineGroups } from "react-icons/MdOutlineGroups"
 
 const MyChats = ({ fetchAgain }) => {
     const [loggedUser, setLoggedUser] = useState();
@@ -64,14 +66,14 @@ const MyChats = ({ fetchAgain }) => {
             justifyContent="space-between"
             alignItems="center"
           >
-            My Chats
+            Chats
               <GroupChatModal>
               <Button
                 display="flex"
                 fontSize={{ base: "17px", md: "10px", lg: "17px" }}
-                rightIcon={<AddIcon />}
+                rightIcon={<Icon as={MdOutlineGroups}/>}
               >
-                New Group Chat
+                New Group
               </Button>
               </GroupChatModal>
           </Box>
