@@ -70,7 +70,6 @@ const MyChats = ({ fetchAgain }) => {
                 display="flex"
                 fontSize={{ base: "17px", md: "10px", lg: "17px" }}
                 rightIcon={<i class="fa-solid fa-people-roof"></i>}
-                
               >
                 New Group
               </Button>

@@ -1,5 +1,5 @@
 import { ArrowBackIcon } from "@chakra-ui/icons";
-import { Box, FormControl, IconButton, Input, InputRightElement, Spinner, Text, useToast } from "@chakra-ui/react";
+import { Box, FormControl, IconButton, Input, InputGroup, InputRightElement, Spinner, Text, useToast } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { getSender, getSenderFull } from "../config/ChatLogics";
@@ -10,6 +10,7 @@ import ScrollableChat from "./ScrollableChat";
 import io from "socket.io-client";
 import animationData from "../Animations/typing.json";
 import Lottie from "lottie-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const ENDPOINT = "https://a-townhall.herokuapp.com/";
 
@@ -240,6 +241,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                 ) : (
                   <></>
                 )}
+                <InputGroup>
                 <Input
                   variant="filled"
                   bg="#E0E0E0"
@@ -253,9 +255,11 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                     colorScheme="blue.800"
                     aria-label='Call Segun'
                     size='lg'
-                    icon={<i class="fa-regular fa-paper-plane-top"></i>}
-                  />}
+                    icon={<FontAwesomeIcon icon="fa-regular fa-paper-plane-top" />}
+                  />
+                  }
                 />
+                 </InputGroup>
               </FormControl>
             </Box>
           </>
@@ -270,6 +274,6 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
       </>
 
     );
-    
+
   };
   export default SingleChat;
