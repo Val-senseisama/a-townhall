@@ -1,5 +1,5 @@
 import { ArrowBackIcon } from "@chakra-ui/icons";
-import { Box, FormControl, IconButton, Input, InputGroup, InputRightElement, Spinner, Text, useToast } from "@chakra-ui/react";
+import { Box, Button, FormControl, IconButton, Input, Spinner, Text, useToast } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { getSender, getSenderFull } from "../config/ChatLogics";
@@ -10,7 +10,7 @@ import ScrollableChat from "./ScrollableChat";
 import io from "socket.io-client";
 import animationData from "../Animations/typing.json";
 import Lottie from "lottie-react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import SendIcon from '@mui/icons-material/Send';
 
 const ENDPOINT = "https://a-townhall.herokuapp.com/";
 
@@ -26,6 +26,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     const [background, setBackground] = useState("https://i.pinimg.com/736x/8c/98/99/8c98994518b575bfd8c949e91d20548b.jpg");
     const toast = useToast();
   
+    
     const defaultOptions = {
       loop: true,
       autoplay: true,
@@ -68,8 +69,8 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
       }
     };
   
-    const sendMessage = async (event) => {
-      if (event.key === "Enter" && newMessage) {
+    const sendMessage = async() => {
+        console.log("send key clicked");
         socket.emit("stop typing", selectedChat._id);
         try {
           const config = {
@@ -89,7 +90,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
           );
           socket.emit("new message", data);
           setMessages([...messages, data]);
-        } catch (error) {
+        }catch(error) {
           toast({
             title: "Error Occured!",
             description: "Failed to send the Message",
@@ -99,7 +100,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             position: "bottom",
           });
         }
-      }
+      
     };
   
     useEffect(() => {
@@ -179,6 +180,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                   <> 
                     {getSender(user, selectedChat.users)}
                     <ProfileModal
+                    size="xs"
                       user={getSenderFull(user, selectedChat.users)}
                     />
                   </>
@@ -224,10 +226,12 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
               )}
   
               <FormControl
-                onKeyDown={sendMessage}
+                // onKeyDown={sendMessage}
                 id="first-name"
                 isRequired
                 mt={3}
+                display="flex"
+                flexDir="row"
               >
                 {istyping ? (
                   <div>
@@ -241,25 +245,27 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                 ) : (
                   <></>
                 )}
-                <InputGroup>
                 <Input
                   variant="filled"
                   bg="#E0E0E0"
                   placeholder="Enter a message.."
                   value={newMessage}
-                onChange={typingHandler}
+                  onChange={typingHandler}
                 />
-                <InputRightElement 
-                  pointerEvents="all"
-                  children={<IconButton 
-                    colorScheme="blue.800"
-                    aria-label='Call Segun'
+                <Button
+                    variant="ghost"
                     size='lg'
-                    icon={<FontAwesomeIcon icon="fa-regular fa-paper-plane-top" />}
-                  />
-                  }
-                />
-                 </InputGroup>
+                    cursor="pointer"
+                    colorScheme="blue.800"
+                    fontSize={{ base: "17px", md: "10px", lg: "17px" }}
+                    name="sendButton"
+                    onClick={sendMessage}   
+                >
+                {/* <SendIcon />  */}
+                <i className="fa-regular fa-paper-plane fa-lg"></i>
+                </Button>
+              
+                
               </FormControl>
             </Box>
           </>
