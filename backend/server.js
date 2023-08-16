@@ -18,11 +18,13 @@ app.use("/api/message", messageRoutes);
 
 const __dirname1 = path.resolve();
 if(process.env.NODE_ENV === "production") {
+    console.log(process.env.NODE_ENV);
     app.use(express.static(path.join(__dirname1, "/frontend/a-townhall/build")));
 
     app.get("*", (req, res) => {
         res.sendFile(path.resolve(__dirname1, "/frontend/a-townhall/build", "index.html"));
     });
+    app.use("*", express.static(path.join(__dirname1, "/frontend/a-townhall/build")));
 } else {
     app.get("/", (req, res) => {
         res.send("API up and running away");
@@ -64,9 +66,7 @@ io.on("connection", ( socket ) => {
         if(!chat.users) return console.log("chat.users not defined");
 
         chat.users.forEach(user => {
-            if(user._id == newMessageReceived.sender._id) return;
-
-            socket.in(user._id).emit("message received", newMessageReceived);
+            if(user._id == newMessageReceived.sender._id) return socket.in(user._id).emit("message received", newMessageReceived);
         });
     });
 
